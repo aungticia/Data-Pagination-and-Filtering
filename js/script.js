@@ -16,18 +16,20 @@ const searchHeader = document.querySelector('.header');
 
 const dataPerPage = 9;
 
-searchHeader.addEventListener('keyup', () => {
-  const html = `
+const html = `
       <label for="search" class="student-search">
         <span>Search by name</span>
         <input id="search" placeholder="Search by name...">
         <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>     
       </label>
     `;
-    searchHeader.insertAdjacentElement('beforeend', html);
+    searchHeader.insertAdjacentHTML('beforeend', html);
+
+const searchInput = document.getElementById('search');
+searchHeader.addEventListener('keyup', () => {
 
   const newData = [];
-  const userInput = userInput.value.toLowerCase();
+  const userInput = searchInput.value.toLowerCase();
   for (i = 0; i < data.length; i++) {
     const searchName = data[i].name.first.toLowerCase() + ' ' + data[i].name.last.toLowerCase();
     
@@ -37,6 +39,7 @@ searchHeader.addEventListener('keyup', () => {
   }
 
   if (newData.length > 0) {
+    pagination.innerHTML = '';
     handlePagination(newData);
     showPage(newData, 1);
   } else {
