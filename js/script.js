@@ -12,8 +12,39 @@ For assistance:
 */
 const studentList = document.querySelector('.student-list');
 const pagination = document.querySelector('.link-list');
+const searchHeader = document.querySelector('.header');
 
 const dataPerPage = 9;
+
+searchHeader.addEventListener('keyup', () => {
+  const html = `
+      <label for="search" class="student-search">
+        <span>Search by name</span>
+        <input id="search" placeholder="Search by name...">
+        <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>     
+      </label>
+    `;
+    searchHeader.insertAdjacentElement('beforeend', html);
+
+  const newData = [];
+  const userInput = userInput.value.toLowerCase();
+  for (i = 0; i < data.length; i++) {
+    const searchName = data[i].name.first.toLowerCase() + ' ' + data[i].name.last.toLowerCase();
+    
+    if (searchName.includes(userInput)) {
+      newData.push(data[i]);
+    }
+  }
+
+  if (newData.length > 0) {
+    handlePagination(newData);
+    showPage(newData, 1);
+  } else {
+    const html = '<h3>No Results Found....</h3>';
+    studentList.innerHTML = html;
+    pagination.innerHTML = '';
+  }
+});
 
 
 function handlePagination(array) {
