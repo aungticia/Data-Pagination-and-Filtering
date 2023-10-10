@@ -25,9 +25,9 @@ const html = `
     `;
     searchHeader.insertAdjacentHTML('beforeend', html);
 
+// Search Students by Names
 const searchInput = document.getElementById('search');
 searchHeader.addEventListener('keyup', () => {
-
   const newData = [];
   const userInput = searchInput.value.toLowerCase();
   for (i = 0; i < data.length; i++) {
@@ -49,7 +49,7 @@ searchHeader.addEventListener('keyup', () => {
   }
 });
 
-
+//Button Function
 function handlePagination(array) {
    const numberOfButton = Math.ceil(array.length / dataPerPage);
    for (let i = 1; i <= numberOfButton; i++) {
